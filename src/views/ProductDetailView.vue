@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
 
-import { formatPrice } from '@/types/productCard'
+import ProductCard from '@/components/ProductCard.vue'
 import { useProductStore } from '@/stores/productStore'
 
 const props = defineProps<{
@@ -35,16 +35,12 @@ const product = computed(() =>
     </template>
 
     <template v-else-if="product">
-      <h1 class="mt-4 text-h5 font-weight-bold">{{ product.title }}</h1>
+      <h1 class="mt-4 text-h5 font-weight-bold">商品細節</h1>
       <p class="mt-2 text-body-2 text-medium-emphasis">
         商品 ID：{{ product.id }}
       </p>
-      <p class="mt-4 text-h6 font-weight-bold">
-        {{ formatPrice(product.price) }}
-      </p>
-      <p class="mt-1 text-body-2 text-medium-emphasis">
-        原價 {{ formatPrice(product.originalPrice) }}
-      </p>
+
+      <ProductCard class="mt-4" :product="product" mode="detail" />
     </template>
 
     <template v-else>
