@@ -183,16 +183,19 @@
 - 建立 `src/utils/persistence.ts`。
 - 定義 storage key，例如 `momo-card-showroom:product-edits`。
 - 實作 `loadProductEdits()`、`saveProductEdits()`、`clearProductEdit(id)`。
-- 處理 JSON parse 失敗，避免 app crash。
-- App/store 初始化時 hydrate。
-- 補 Vitest：mock `localStorage`，測保存、讀取、壞資料 fallback。
+- 將 storage I/O 從 `productStore` 抽離至 persistence utility。
+- 處理 JSON parse、storage 讀取/寫入 exception 與格式錯誤，避免 app crash。
+- App/store 初始化時 hydrate，reset 後同步移除該商品 persisted draft。
+- 補 Vitest：mock `localStorage`，測保存、讀取、單一商品清除、壞資料與 storage exception fallback。
 
 ### 驗收標準
 
 - 編輯資料 reload 後仍保留。
 - 壞掉的 `localStorage` JSON 不會讓 app crash。
 - 可清除單一商品編輯資料。
+- reset 商品後 localStorage 不再保留該商品 draft。
 - persistence utility 有 Vitest 覆蓋主要情境。
+- `npm run test` 與 `npm run build` 通過。
 
 ## 11. Sample Usage / 文件
 

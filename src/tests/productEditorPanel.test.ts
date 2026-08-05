@@ -71,6 +71,7 @@ const DividerStub = defineComponent({
 describe('ProductEditorPanel', () => {
   beforeEach(() => {
     setActivePinia(createPinia())
+    localStorage.clear()
   })
 
   function mountPanel() {

@@ -3,26 +3,14 @@ import { defineStore } from 'pinia'
 
 import { getProducts } from '@/services/mockProductService'
 import { normalizeProductCard, type ProductCard } from '@/types/productCard'
-
-const PRODUCT_EDITS_STORAGE_KEY = 'momo-card-showroom:product-edits'
+import {
+  clearProductEdit,
+  loadProductEdits,
+  saveProductEdits,
+} from '@/utils/persistence'
 
 export type ProductDraft = Partial<Omit<ProductCard, 'id'>>
 export type EditedProducts = Record<string, ProductDraft>
-
-function isEditedProducts(value: unknown): value is EditedProducts {
-  return Boolean(value) && typeof value === 'object' && !Array.isArray(value)
-}
-
-function cloneDrafts(drafts: EditedProducts): EditedProducts {
-  return Object.fromEntries(
-    Object.entries(drafts).map(([id, draft]) => [
-      id,
-      {
-        ...draft,
-      },
-    ]),
-  )
-}
 
 export const useProductStore = defineStore('product', () => {
   const products = ref<ProductCard[]>([])
@@ -70,35 +58,26 @@ export const useProductStore = defineStore('product', () => {
         ...draft,
       },
     }
+
+    saveProductEdits(editedProducts.value)
   }
 
   function resetProductDraft(id: string) {
     const { [id]: _removedDraft, ...remainingDrafts } = editedProducts.value
 
     editedProducts.value = remainingDrafts
+    clearProductEdit(id)
   }
 
   function hydrateFromStorage() {
-    const serializedDrafts = globalThis.localStorage?.getItem(PRODUCT_EDITS_STORAGE_KEY)
-
-    if (!serializedDrafts) {
-      editedProducts.value = {}
-      return
-    }
-
-    const parsedDrafts: unknown = JSON.parse(serializedDrafts)
-
-    editedProducts.value = isEditedProducts(parsedDrafts)
-      ? cloneDrafts(parsedDrafts)
-      : {}
+    editedProducts.value = loadProductEdits()
   }
 
   function saveToStorage() {
-    globalThis.localStorage?.setItem(
-      PRODUCT_EDITS_STORAGE_KEY,
-      JSON.stringify(editedProducts.value),
-    )
+    saveProductEdits(editedProducts.value)
   }
+
+  hydrateFromStorage()
 
   return {
     products,

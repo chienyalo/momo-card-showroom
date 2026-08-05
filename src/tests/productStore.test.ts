@@ -138,6 +138,7 @@ describe('productStore', () => {
 
     expect(store.editedProducts['store-product-1']).toBeUndefined()
     expect(store.findProductById('store-product-1')).toEqual(baseProducts[0])
+    expect(JSON.parse(localStorage.getItem(storageKey) ?? '{}')).toEqual({})
   })
 
   it('hydrates edited products from storage and applies them to display data', async () => {
@@ -150,8 +151,8 @@ describe('productStore', () => {
     localStorage.setItem(storageKey, JSON.stringify(savedDrafts))
 
     const store = useProductStore()
+    expect(store.editedProducts).toEqual(savedDrafts)
     await store.loadProducts()
-    store.hydrateFromStorage()
 
     expect(store.editedProducts).toEqual(savedDrafts)
     expect(store.findProductById('store-product-2')).toMatchObject({
@@ -173,6 +174,23 @@ describe('productStore', () => {
     expect(JSON.parse(localStorage.getItem(storageKey) ?? '{}')).toEqual({
       'store-product-1': {
         title: 'Saved 商品一',
+      },
+    })
+  })
+
+  it('automatically persists draft updates', async () => {
+    const store = useProductStore()
+    await store.loadProducts()
+
+    store.updateProductDraft('store-product-1', {
+      title: '自動保存商品',
+      price: 799,
+    })
+
+    expect(JSON.parse(localStorage.getItem(storageKey) ?? '{}')).toEqual({
+      'store-product-1': {
+        title: '自動保存商品',
+        price: 799,
       },
     })
   })
