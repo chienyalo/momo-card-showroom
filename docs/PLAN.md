@@ -40,6 +40,17 @@
 - 使用 `localStorage` 做 browser-side persistence。
 - 提供商品卡重用方式的 sample usage 文件。
 
+## 技術選型
+
+- Vue 3：使用 Composition API 與 `<script setup lang="ts">`，負責主要 UI 與 component composition。
+- Vuetify：負責 layout、表單、按鈕、卡片容器等基礎 UI，加速兩小時內交付。
+- Vite：作為開發伺服器與 production build 工具，使用 `vite.config.ts` 維持 TypeScript 設定一致性。
+- Pinia：集中管理商品卡列表、目前選取商品、編輯狀態與 `localStorage` hydrate/save 流程。
+- axios：僅用於 mock service layer，模擬未來 API client 介面，不呼叫真實 momo API。
+- Vue Router：提供 `/` 與 `/product/:id` 兩個頁面流程，對應列表展示與單一卡片細節。
+- TypeScript：定義 `ProductCard` schema、store state、service response 與 component props。
+- Vitest：作為 Vite-native unit test framework，優先測試純邏輯、store actions、mock service 與 persistence utility。
+
 ## 實作規劃
 
 - 使用 Vue 3、Vite、Vuetify、Pinia、Vue Router、TypeScript、axios。
@@ -74,6 +85,7 @@
 - 驗證編輯面板修改欄位後，商品卡 preview 會即時更新。
 - 驗證重新整理頁面後，`localStorage` 仍保留使用者編輯結果。
 - 驗證沒有發出真實 momo network request。
+- 使用 Vitest 驗證 `ProductCard` schema helper、Pinia store actions、mock service 與 `localStorage` persistence utility。
 - 驗證 `npm run build` 可以成功完成。
 - 驗證 README 清楚說明啟動方式、架構、tradeoff 與後續擴充方向。
 
