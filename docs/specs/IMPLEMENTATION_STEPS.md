@@ -202,9 +202,12 @@
 ### 實作項目
 
 - 在 `README.md` 說明如何啟動、路由、資料流、元件重用方式。
-- 在 README 或 `public/sample.html` 放 sample usage。
-- 說明 `ProductCard` props schema。
-- 說明 tradeoff：只做一種高品質卡片、不串真 API、用 mock service 保留替換彈性。
+- 在 README 放 sample usage，避免額外維護 `public/sample.html`。
+- 說明 `ProductCard` props schema，以及 list/detail mode 的實際用法。
+- 說明 mock service、Pinia store、editor、persistence utility 的資料流與責任邊界。
+- 說明不串真實 momo API、不使用專有素材的限制。
+- 說明 tradeoff：只做一種高品質卡片、用 mock service 保留替換彈性，以及後續演進方向。
+- 依 README 從啟動到商品編輯流程完成一次手動驗證。
 
 ### 驗收標準
 
@@ -212,6 +215,8 @@
 - 文件清楚說明 `/` 與 `/product/:id`。
 - 文件清楚說明 `ProductCard` 如何被重用。
 - tradeoff 與後續演進方向明確。
+- 文件中的指令、路由、props 與資料流描述和目前 source 一致。
+- `npm run test` 與 `npm run build` 通過。
 
 ## 12. 驗證與測試
 
