@@ -65,24 +65,15 @@
 - THEN 首頁 SHOULD 顯示錯誤狀態
 - AND 首頁 SHOULD 提供 retry 入口重新呼叫 `loadProducts()`
 
-### Requirement: 首頁必須提供展示用 header 與 search bar
+### Requirement: 首頁必須提供展示用 header
 
-首頁 SHOULD 提供簡單 header 與 search bar 視覺，作為商品列表 showroom 的入口，但 MUST NOT 實作真搜尋或發出真實查詢。
+首頁 SHOULD 提供簡單 header，作為商品列表 showroom 的入口。
 
-#### Scenario: Header and search visual
+#### Scenario: Header visual
 
 - GIVEN 使用者進入首頁
 - WHEN 首頁 render
 - THEN 頁面 SHOULD 顯示 header
-- AND 頁面 SHOULD 顯示 search bar 視覺
-
-#### Scenario: Search bar 不查詢
-
-- GIVEN 首頁顯示 search bar
-- WHEN 使用者看到或操作 search bar
-- THEN search bar MUST NOT 呼叫真實 momo API
-- AND search bar SHOULD NOT 觸發遠端查詢
-- AND search bar MAY 以 disabled、read-only 或 placeholder 形式呈現
 
 ### Requirement: 首頁列表變更必須可驗證
 

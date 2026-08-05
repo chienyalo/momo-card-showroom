@@ -45,17 +45,6 @@ async function retryLoadProducts() {
         </p>
       </div>
 
-      <v-text-field
-        class="home-view__search"
-        model-value=""
-        label="搜尋商品"
-        placeholder="搜尋功能會在後續版本規劃"
-        prepend-inner-icon="mdi-magnify"
-        variant="outlined"
-        density="comfortable"
-        readonly
-        hide-details
-      />
     </header>
 
     <v-alert
@@ -118,10 +107,7 @@ async function retryLoadProducts() {
 }
 
 .home-view__header {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
-  gap: 24px;
-  align-items: end;
+  display: block;
 }
 
 .home-view__eyebrow {
@@ -149,10 +135,6 @@ async function retryLoadProducts() {
   line-height: 1.6;
 }
 
-.home-view__search {
-  width: 100%;
-}
-
 .home-view__empty {
   display: flex;
   min-height: 220px;
@@ -165,10 +147,6 @@ async function retryLoadProducts() {
 }
 
 @media (max-width: 760px) {
-  .home-view__header {
-    grid-template-columns: 1fr;
-  }
-
   .home-view__title {
     font-size: 1.45rem;
   }
