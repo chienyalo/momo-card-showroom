@@ -1,0 +1,21 @@
+# Tasks
+
+- [x] 建立 `src/stores/productStore.ts`。
+- [x] 使用 Pinia Setup Store 定義 `useProductStore`。
+- [x] 建立 state：`products`、`isLoading`、`error`、`editedProducts`。
+- [x] 建立顯示資料 computed，例如 `displayProducts`。
+- [x] 實作 `loadProducts()`，透過 mock product service 載入商品。
+- [x] 實作 `findProductById(id)`，從合併後顯示資料查找商品。
+- [x] 實作 `updateProductDraft(id, draft)`。
+- [x] 實作 `resetProductDraft(id)`。
+- [x] 實作 `hydrateFromStorage()`。
+- [x] 實作 `saveToStorage()`。
+- [x] 確保商品顯示資料由 mock base data 與 local edited data merge。
+- [x] 確保編輯資料不 mutate 或覆蓋 mock base data。
+- [x] 建立 Vitest 測試檔，覆蓋 product store。
+- [x] 測試 `loadProducts()` 載入商品。
+- [x] 測試 loading 與 error state。
+- [x] 測試 `updateProductDraft()` 與 display merge 行為。
+- [x] 測試 `resetProductDraft()`。
+- [x] 測試 `hydrateFromStorage()` 與 `saveToStorage()`。
+- [x] 執行 `npm run test` 驗證 store 測試通過。
