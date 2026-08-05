@@ -158,11 +158,14 @@
 ### 實作項目
 
 - 建立 `src/components/ProductEditorPanel.vue`。
+- 使用 typed `product` prop，並由 Pinia store 作為唯一編輯狀態來源。
 - 使用 Vuetify form controls。
 - 編輯欄位：商品名稱、圖片 URL、售價、原價、折扣 badge、促銷文案、評價/銷量、CTA。
 - 每次輸入呼叫 store `updateProductDraft()`。
 - 提供 reset 按鈕，還原 mock default。
 - Preview 必須即時更新。
+- 補元件測試，驗證欄位初始化、文字/數值欄位更新與 reset。
+- 不在本步驟直接操作 `localStorage`；保存流程留至第 10 步。
 
 ### 驗收標準
 
@@ -170,6 +173,8 @@
 - 修改後 preview 即時更新。
 - reset 可還原 mock default。
 - 表單不直接修改 mock base data。
+- 無效價格、評價或銷量不得寫入商品 draft。
+- `npm run test` 與 `npm run build` 通過。
 
 ## 10. localStorage Persistence
 
