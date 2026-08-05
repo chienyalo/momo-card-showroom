@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenSpec Reviewed Workflow"
+  short_description: "Run a gated OpenSpec workflow with required artifact and code reviews"
+  default_prompt: "Use $openspec-reviewed-workflow-codex to run a staged OpenSpec flow with checklist tracking, required review files, and manual approval between stages."

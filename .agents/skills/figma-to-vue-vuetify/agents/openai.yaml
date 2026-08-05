@@ -1,0 +1,7 @@
+interface:
+  display_name: "Figma to Vue Vuetify"
+  short_description: "把 Figma 設計拆元件後轉成 Vue + Vuetify。"
+  default_prompt: "Use $figma-to-vue-vuetify to turn this Figma design into a Vue + Vuetify implementation with component splitting first."
+
+policy:
+  allow_implicit_invocation: true
